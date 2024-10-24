@@ -1,0 +1,18 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "full stack practice ",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "Zensaar"
+  ],
+  "author": "Aditya sabat",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
