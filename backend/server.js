@@ -1,6 +1,8 @@
 import express from "express";
 import connectDB from "./src/config/db.js";
 import dotenv from "dotenv";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 
 dotenv.config({
   path: "./.env",
@@ -9,7 +11,18 @@ dotenv.config({
 connectDB();
 
 const app = express();
-const port = 3000;
+
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true,
+  })
+);
+
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.json());
+const port = process.env.PORT || 5500;
 
 app.get("/", (req, res) => {
   res.send("hello world");
