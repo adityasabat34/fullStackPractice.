@@ -22,6 +22,7 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
+app.use(cookieParser());
 const port = process.env.PORT || 5500;
 
 app.get("/", (req, res) => {
