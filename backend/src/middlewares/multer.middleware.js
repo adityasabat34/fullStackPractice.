@@ -1,11 +1,13 @@
 import multer from "multer";
 
 const storage = multer.diskStorage({
+  //diskStorage is where we store the uploaded files
   destination: function (req, file, cb) {
+    // destination defines the folder where the uploaded files will be saved
     cb(null, "./public/temp");
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    cb(null, file.originalname); //originalfile means the user local machine file name
   },
 });
 

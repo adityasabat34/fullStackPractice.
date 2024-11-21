@@ -5,7 +5,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 dotenv.config({
-  path: "./.env",
+  path: "./.env", // path is the location of the env file
 });
 
 connectDB();
@@ -14,15 +14,16 @@ const app = express();
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: process.env.CORS_ORIGIN, // origin means where the request is coming from
     credentials: true,
   })
 );
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.json());
-app.use(cookieParser());
+app.use(express.json()); // Parses incoming request bodies with JSON payloads and converts them to JavaScript objects
+// that can be accessed via req.body.
+app.use(cookieParser()); // // Parses cookies from incoming requests and makes them available in req.cookies
 const port = process.env.PORT || 5500;
 
 app.get("/", (req, res) => {

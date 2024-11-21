@@ -5,7 +5,7 @@ class ApiError extends Error {
     errors = [],
     stack = ""
   ) {
-    super(message);
+    super(message); // super is the keyword to overwrite the stuff
     this.statusCode = statusCode;
     this.data = null;
     this.success = false;
