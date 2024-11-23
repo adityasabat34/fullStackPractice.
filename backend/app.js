@@ -16,4 +16,9 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" })); // Returns middl
 app.use(cookieParser()); // Parses cookies from incoming requests and makes them available in req.cookies
 app.use(express.static("public")); // This is a built-in middleware function in Express. It serves static files and is based on serve-static.
 
+//All Routes Import
+import userRouter from "./src/routes/userRoute.js";
+
+app.use("/api/users", userRouter);
+
 export { app };
