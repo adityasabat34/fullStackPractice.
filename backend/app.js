@@ -19,6 +19,6 @@ app.use(express.static("public")); // This is a built-in middleware function in 
 //All Routes Import
 import userRouter from "./src/routes/userRoute.js";
 
-app.use("/api/users", userRouter);
+app.use("/api/v1/users", userRouter);
 
 export { app };
