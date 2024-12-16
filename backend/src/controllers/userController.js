@@ -331,50 +331,50 @@ const updateCoverImage = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, user, "Cover image uploaded successfully"));
 });
 
-// const getUserChannelProfile = asyncHandler(async (req, res) => {
-//   const { userName } = req.params;
+const getUserChannelProfile = asyncHandler(async (req, res) => {
+  const { userName } = req.params;
 
-//   if (!userName?.trim()) {
-//     throw new ApiError(400, "username is missing");
-//   }
+  if (!userName?.trim()) {
+    throw new ApiError(400, "username is missing");
+  }
 
-//   const channel = await User.aggregate([
-//     {
-//       $match: {
-//         userName: userName?.toLowerCase(),
-//       },
-//     },
-//     {
-//       $lookup: {
-//         from: "subscriptions",
-//         localField: "_id",
-//         foreignField: "subscriber",
-//         as: "subscribedTo", // channel owner subscribed to another channel
-//       },
-//     },
-//     {
-//       $lookup: {
-//         from: "subscriptions",
-//         localField: "_id",
-//         foreignField: "channel",
-//         as: "subscribers", //channel total subscriber
-//       },
-//     },
-//     {
-//       $addFields: {
-//         subscriberCount: {
-//           $size: "$subscribers",
-//         },
-//         channelSubscribedToCount: {
-//           $size: "$subscribedTo",
-//         },
-//         isSubcribed: {
-//           // pending
-//         },
-//       },
-//     },
-//   ]);
-// });
+  const channel = await User.aggregate([
+    {
+      $match: {
+        userName: userName?.toLowerCase(),
+      },
+    },
+    {
+      $lookup: {
+        from: "subscriptions",
+        localField: "_id",
+        foreignField: "subscriber",
+        as: "subscribedTo", // channel owner subscribed to another channel
+      },
+    },
+    {
+      $lookup: {
+        from: "subscriptions",
+        localField: "_id",
+        foreignField: "channel",
+        as: "subscribers", //channel total subscriber
+      },
+    },
+    {
+      $addFields: {
+        subscriberCount: {
+          $size: "$subscribers",
+        },
+        channelSubscribedToCount: {
+          $size: "$subscribedTo",
+        },
+        isSubcribed: {
+          // pending
+        },
+      },
+    },
+  ]);
+});
 export {
   registerUser,
   loginUser,
