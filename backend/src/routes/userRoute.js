@@ -42,6 +42,6 @@ router
   .patch(verifyJWT, upload.single("avatar"), updateAvatarImage);
 router
   .route("/cover-image")
-  .post(verifyJWT, upload.single("coverImage"), updateCoverImage);
+  .patch(verifyJWT, upload.single("coverImage"), updateCoverImage);
 
 export default router;
